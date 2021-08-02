@@ -1,14 +1,13 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import ImageButton from "./ImageButton";
 import Images from "../constants/images";
 
 const Navbar = (props) => {
   return (
     <View style={styles.navContainer}>
       <Text style={styles.heading}>{props.headerText}</Text>
-      <TouchableOpacity>
-        <Image style={styles.menuIcon} source={Images.menuIcon} />
-      </TouchableOpacity>
+      <ImageButton ImageStyle={styles.menuIcon} ImageSource={Images.menuIcon} />
     </View>
   );
 };
@@ -30,7 +29,6 @@ const styles = StyleSheet.create({
   menuIcon: {
     height: 13,
     width: 20,
-    resizeMode: "cover",
   },
 });
 
