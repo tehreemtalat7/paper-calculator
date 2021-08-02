@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, TextInput, StyleSheet, Image } from "react-native";
 import ImageButton from "./ImageButton";
 import Images from "../constants/images";
 
@@ -46,7 +46,11 @@ const TopArea = (props) => {
             onClick={handleAdd}
           />
           <View style={styles.countBox}>
-            <Text style={styles.sheets}>{numberOfSheets}</Text>
+            <TextInput
+              style={styles.sheets}
+              value={numberOfSheets.toString()}
+              onChangeText={(value) => setNumberOfSheets(value)}
+            />
             <Text style={styles.sheetsLabel}>Sheets</Text>
           </View>
           <ImageButton
