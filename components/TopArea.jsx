@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Image } from "react-native";
 import ImageButton from "./ImageButton";
 import Images from "../constants/images";
 
 const TopArea = (props) => {
   const [numberOfSheets, setNumberOfSheets] = useState(1);
-  const [displayImage, setDisplayImage] = useState(Images.sheets1);
-  const [weight, setWeight] = useState(4.99);
 
   const handleSubtract = () => {
     if (numberOfSheets <= 1) {
@@ -22,45 +20,47 @@ const TopArea = (props) => {
     setNumberOfSheets((currentNumber) => currentNumber + 1);
   };
 
-  useEffect(() => {
-    setWeight(4.99 * numberOfSheets);
-    if (numberOfSheets <= 1) setDisplayImage(Images.sheets1);
-    else if (numberOfSheets >= 2 && numberOfSheets <= 10)
-      setDisplayImage(Images.sheets2);
+  const sheetIcon = () => {
+    let imageSource = Images.sheets1;
+    if (numberOfSheets >= 2 && numberOfSheets <= 10)
+      imageSource = Images.sheets2;
     else if (numberOfSheets > 10 && numberOfSheets <= 25)
-      setDisplayImage(Images.sheets3);
+      imageSource = Images.sheets3;
     else if (numberOfSheets > 25 && numberOfSheets <= 50)
-      setDisplayImage(Images.sheets4);
-    else if (numberOfSheets > 50) setDisplayImage(Images.sheets5);
-  }, [numberOfSheets]);
+      imageSource = Images.sheets4;
+    else if (numberOfSheets > 50) imageSource = Images.sheets5;
+    return imageSource;
+  };
 
   return (
     <View style={styles.container}>
-      <View style={styles.topBox}>
-        <View style={styles.mainArea}>
-          <Image style={styles.sheets} source={displayImage} />
+      <View style={styles.topContainer}>
+        <View style={styles.sheetContainer}>
+          <Image source={sheetIcon()} />
+        </View>
+        <View style={styles.rightContainer}>
+          <ImageButton
+            containerStyle={styles.addButtonContainer}
+            ImageStyle={styles.btn}
+            ImageSource={Images.addIcon}
+            onClick={handleAdd}
+          />
           <View style={styles.countBox}>
-            <Text style={styles.numberOfSheets}>{numberOfSheets}</Text>
+            <Text style={styles.sheets}>{numberOfSheets}</Text>
             <Text style={styles.sheetsLabel}>Sheets</Text>
           </View>
           <ImageButton
-            ImageStyle={styles.subtract}
+            containerStyle={styles.subtractButtonContainer}
+            ImageStyle={styles.btn}
             ImageSource={Images.minusIcon}
-            containerStyle={styles.absolutePosition}
             onClick={handleSubtract}
-          />
-          <ImageButton
-            ImageStyle={styles.add}
-            ImageSource={Images.addIcon}
-            containerStyle={styles.absolutePosition}
-            onClick={handleAdd}
           />
         </View>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Per Copy</Text>
-        <Text style={{ ...styles.footerText, ...styles.totalWeight }}>
-          {weight.toFixed(2)}
+        <Text style={styles.whiteText}>Per Copy</Text>
+        <Text style={{ ...styles.whiteText, ...styles.totalWeight }}>
+          {(4.99 * numberOfSheets).toFixed(2)}
         </Text>
       </View>
     </View>
@@ -69,23 +69,22 @@ const TopArea = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
   },
-  topBox: {
-    height: 229,
+  topContainer: {
+    height: 169,
     width: 355,
     backgroundColor: "#37CEFF",
     padding: 20,
     borderTopEndRadius: 15,
     borderTopLeftRadius: 15,
-  },
-  mainArea: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
-  sheets: {
-    marginTop: 27,
+  sheetContainer: {
+    flex: 1,
+    marginTop: 7,
     marginLeft: 16,
   },
   countBox: {
@@ -93,11 +92,10 @@ const styles = StyleSheet.create({
     width: 74,
     backgroundColor: "#4A5171",
     position: "absolute",
-    marginTop: 48,
-    marginLeft: 231,
+    marginTop: 10,
     borderRadius: 15,
   },
-  numberOfSheets: {
+  sheets: {
     fontWeight: "bold",
     fontSize: 24,
     textAlign: "center",
@@ -109,13 +107,22 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 10,
   },
-  add: {
-    marginLeft: 258,
-    marginTop: 38,
+  rightContainer: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "flex-end",
+    marginTop: 18,
   },
-  subtract: {
-    marginLeft: 258,
-    marginTop: 111,
+  addButtonContainer: {
+    zIndex: 1,
+    marginRight: 27,
+  },
+  subtractButtonContainer: {
+    zIndex: 1,
+    marginRight: 27,
+    marginTop: 54,
+  },
+  btn: {
     height: 20,
     width: 20,
   },
@@ -130,15 +137,12 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 15,
     borderBottomLeftRadius: 15,
   },
-  footerText: {
+  whiteText: {
     color: "white",
   },
   totalWeight: {
     fontWeight: "bold",
     fontSize: 18,
-  },
-  absolutePosition: {
-    position: "absolute",
   },
 });
 
