@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   heading: {
     height: 20,
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "montserrat_bold",
   },
   menuIcon: {
     height: 13,

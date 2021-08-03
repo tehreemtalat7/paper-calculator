@@ -48,6 +48,8 @@ const TopArea = (props) => {
           <View style={styles.countBox}>
             <TextInput
               style={styles.sheets}
+              keyboardType="number-pad"
+              maxLength={2}
               value={numberOfSheets.toString()}
               onChangeText={(value) => setNumberOfSheets(value)}
             />
@@ -62,8 +64,8 @@ const TopArea = (props) => {
         </View>
       </View>
       <View style={styles.footer}>
-        <Text style={styles.whiteText}>Per Copy</Text>
-        <Text style={{ ...styles.whiteText, ...styles.totalWeight }}>
+        <Text style={styles.copy}>Per Copy</Text>
+        <Text style={styles.totalWeight}>
           {(4.99 * numberOfSheets).toFixed(2)}
         </Text>
       </View>
@@ -94,22 +96,23 @@ const styles = StyleSheet.create({
   countBox: {
     height: 74,
     width: 74,
-    backgroundColor: "#4A5171",
+    backgroundColor: "#4A517120",
     position: "absolute",
     marginTop: 10,
     borderRadius: 15,
   },
   sheets: {
-    fontWeight: "bold",
     fontSize: 24,
-    textAlign: "center",
     paddingTop: 12,
     color: "white",
+    textAlign: "center",
+    fontFamily: "montserrat_bold",
   },
   sheetsLabel: {
+    fontSize: 10,
     color: "white",
     textAlign: "center",
-    fontSize: 10,
+    fontFamily: "Montserrat_400Regular",
   },
   rightContainer: {
     flex: 1,
@@ -141,12 +144,14 @@ const styles = StyleSheet.create({
     borderBottomEndRadius: 15,
     borderBottomLeftRadius: 15,
   },
-  whiteText: {
+  copy: {
     color: "white",
+    fontFamily: "Montserrat_400Regular",
   },
   totalWeight: {
-    fontWeight: "bold",
     fontSize: 18,
+    color: "white",
+    fontFamily: "montserrat_bold",
   },
 });
 
