@@ -3,6 +3,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import Navbar from "./components/Navbar";
 import TopArea from "./components/TopArea";
+import MiddleSection from "./components/MiddleSection";
 
 import { useFonts, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 import AppLoading from "expo-app-loading";
@@ -20,6 +21,7 @@ export default function App() {
     <View style={styles.container}>
       <Navbar headerText="Paper Calculator" />
       <TopArea />
+      <MiddleSection />
       <StatusBar style="auto" />
     </View>
   );
