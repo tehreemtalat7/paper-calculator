@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import Navbar from "./components/Navbar";
 import TopArea from "./components/TopArea";
 import MiddleSection from "./components/MiddleSection";
@@ -18,12 +19,14 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <View style={styles.container}>
-      <Navbar headerText="Paper Calculator" />
-      <TopArea />
-      <MiddleSection />
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <View style={styles.container}>
+        <Navbar headerText="Paper Calculator" />
+        <TopArea />
+        <MiddleSection />
+        <StatusBar style="auto" />
+      </View>
+    </SafeAreaProvider>
   );
 }
 

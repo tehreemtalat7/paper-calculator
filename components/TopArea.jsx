@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, StyleSheet, Image } from "react-native";
 import ImageButton from "./ImageButton";
 import Images from "../constants/images";
+import Colors from "../constants/colors";
 
 const TopArea = (props) => {
   const [numberOfSheets, setNumberOfSheets] = useState(1);
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
   topContainer: {
     height: 169,
     width: 355,
-    backgroundColor: "#37CEFF",
+    backgroundColor: Colors.primaryDark,
     padding: 20,
     borderTopEndRadius: 15,
     borderTopLeftRadius: 15,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
   countBox: {
     height: 74,
     width: 74,
-    backgroundColor: "#4A517120",
+    backgroundColor: Colors.secondaryDark,
     position: "absolute",
     marginTop: 10,
     borderRadius: 15,
@@ -136,7 +137,7 @@ const styles = StyleSheet.create({
   footer: {
     width: 355,
     height: 60,
-    backgroundColor: "#6FDBFF",
+    backgroundColor: Colors.primaryLight,
     flexDirection: "row",
     justifyContent: "space-between",
     paddingVertical: 20,
