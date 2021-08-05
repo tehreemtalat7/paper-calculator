@@ -1,24 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, TextInput, StyleSheet, Image } from "react-native";
 import ImageButton from "./ImageButton";
 import Images from "../constants/images";
 import Colors from "../constants/colors";
 
-const TopArea = (props) => {
-  const [numberOfSheets, setNumberOfSheets] = useState(1);
-
+const TopArea = ({ numberOfSheets, updateNumberOfSheets }) => {
   const handleSubtract = () => {
     if (numberOfSheets <= 1) {
       return;
     }
-    setNumberOfSheets((currentNumber) => currentNumber - 1);
+    // setNumberOfSheets((currentNumber) => currentNumber - 1);
+    updateNumberOfSheets(numberOfSheets - 1);
   };
 
   const handleAdd = () => {
     if (numberOfSheets >= 999) {
       return;
     }
-    setNumberOfSheets((currentNumber) => currentNumber + 1);
+    // setNumberOfSheets((currentNumber) => currentNumber + 1);
+    updateNumberOfSheets(numberOfSheets + 1);
   };
 
   const sheetIcon = () => {
@@ -52,7 +52,7 @@ const TopArea = (props) => {
               keyboardType="number-pad"
               maxLength={2}
               value={numberOfSheets.toString()}
-              onChangeText={(value) => setNumberOfSheets(value)}
+              onChangeText={(value) => updateNumberOfSheets(value)}
             />
             <Text style={styles.sheetsLabel}>Sheets</Text>
           </View>

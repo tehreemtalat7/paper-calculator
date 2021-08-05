@@ -12,28 +12,40 @@ import Colors from "../constants/colors";
 
 const pageSizes = [
   {
-    id: "a1",
-    title: "A2",
-  },
-  {
     id: "a2",
-    title: "A3",
+    title: "A2",
+    length: 494,
+    width: 320,
   },
   {
     id: "a3",
-    title: "A4",
+    title: "A3",
+    length: 420,
+    width: 297,
   },
   {
     id: "a4",
-    title: "A5",
+    title: "A4",
+    length: 297,
+    width: 210,
   },
   {
     id: "a5",
-    title: "A6",
+    title: "A5",
+    length: 210,
+    width: 148,
   },
   {
     id: "a6",
+    title: "A6",
+    length: 148,
+    width: 105,
+  },
+  {
+    id: "a7",
     title: "DIN LANG",
+    length: 320,
+    width: 281,
   },
 ];
 
@@ -41,50 +53,37 @@ const pageFormats = [
   {
     id: "01",
     title: "DIN A",
+    grammage: 10,
   },
   {
     id: "02",
     title: "DIN B",
+    grammage: 15,
   },
   {
     id: "03",
     title: "DIN C",
+    grammage: 500,
   },
   {
     id: "04",
     title: "DIN D",
+    grammage: 60,
   },
   {
     id: "05",
     title: "US Formate",
+    grammage: 100,
   },
   {
     id: "06",
     title: "JIS B",
+    grammage: 670,
   },
   {
     id: "07",
     title: "Custom",
-  },
-  {
-    id: "08",
-    title: "Custom",
-  },
-  {
-    id: "09",
-    title: "Custom",
-  },
-  {
-    id: "10",
-    title: "Custom",
-  },
-  {
-    id: "11",
-    title: "Custom",
-  },
-  {
-    id: "12",
-    title: "Custom",
+    grammage: 10,
   },
 ];
 
@@ -95,11 +94,12 @@ const Item = ({ item, onPress, textColor }) => (
 );
 
 const MiddleSection = (props) => {
-  const [selectedSizeId, setSelectedSizeId] = useState("a3");
+  const [selectedSizeId, setSelectedSizeId] = useState("a4");
   const [selectedFormatId, setSelectedFormatId] = useState("01");
 
   const renderItem = ({ item }) => {
-    const color = item.id === selectedSizeId ? "#37CEFF" : "#B0B5CB";
+    const color =
+      item.id === selectedSizeId ? Colors.primaryDark : Colors.tertiaryDark;
     return (
       <Item
         item={item}
@@ -174,6 +174,10 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 15,
     backgroundColor: Colors.tertiaryLight,
     flexDirection: "row",
+  },
+  formatScroll: {
+    flexDirection: "row",
+    flexWrap: "wrap",
   },
   chip: {
     height: 30,

@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Navbar from "./components/Navbar";
@@ -14,15 +14,26 @@ export default function App() {
     Montserrat_400Regular,
     montserrat_bold: require("./assets/fonts/Montserrat-Bold.ttf"),
   });
+  // states
+  const [numberOfSheets, setNumberOfSheets] = useState(1);
+
+  //event handlers
+  const handleNumOfPagesChange = (value) => {
+    setNumberOfSheets(value);
+  };
 
   if (!fontsLoaded) {
     return <AppLoading />;
   }
+
   return (
     <SafeAreaProvider>
       <View style={styles.container}>
         <Navbar headerText="Paper Calculator" />
-        <TopArea />
+        <TopArea
+          numberOfSheets={numberOfSheets}
+          updateNumberOfSheets={handleNumOfPagesChange}
+        />
         <MiddleSection />
         <StatusBar style="auto" />
       </View>
