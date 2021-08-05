@@ -10,100 +10,27 @@ import {
 import { Chip } from "react-native-elements";
 import Colors from "../constants/colors";
 
-const pageSizes = [
-  {
-    id: "a2",
-    title: "A2",
-    length: 494,
-    width: 320,
-  },
-  {
-    id: "a3",
-    title: "A3",
-    length: 420,
-    width: 297,
-  },
-  {
-    id: "a4",
-    title: "A4",
-    length: 297,
-    width: 210,
-  },
-  {
-    id: "a5",
-    title: "A5",
-    length: 210,
-    width: 148,
-  },
-  {
-    id: "a6",
-    title: "A6",
-    length: 148,
-    width: 105,
-  },
-  {
-    id: "a7",
-    title: "DIN LANG",
-    length: 320,
-    width: 281,
-  },
-];
-
-const pageFormats = [
-  {
-    id: "01",
-    title: "DIN A",
-    grammage: 10,
-  },
-  {
-    id: "02",
-    title: "DIN B",
-    grammage: 15,
-  },
-  {
-    id: "03",
-    title: "DIN C",
-    grammage: 500,
-  },
-  {
-    id: "04",
-    title: "DIN D",
-    grammage: 60,
-  },
-  {
-    id: "05",
-    title: "US Formate",
-    grammage: 100,
-  },
-  {
-    id: "06",
-    title: "JIS B",
-    grammage: 670,
-  },
-  {
-    id: "07",
-    title: "Custom",
-    grammage: 10,
-  },
-];
-
 const Item = ({ item, onPress, textColor }) => (
   <TouchableOpacity onPress={onPress} style={styles.item}>
     <Text style={[styles.title, textColor]}>{item.title}</Text>
   </TouchableOpacity>
 );
 
-const MiddleSection = (props) => {
-  const [selectedSizeId, setSelectedSizeId] = useState("a4");
-  const [selectedFormatId, setSelectedFormatId] = useState("01");
-
+const MiddleSection = ({
+  pageSizes,
+  pageFormats,
+  selectedSizeId,
+  selectedFormatId,
+  onSizeChange,
+  onFormatChange,
+}) => {
   const renderItem = ({ item }) => {
     const color =
       item.id === selectedSizeId ? Colors.primaryDark : Colors.tertiaryDark;
     return (
       <Item
         item={item}
-        onPress={() => setSelectedSizeId(item.id)}
+        onPress={() => onSizeChange(item.id)}
         textColor={{ color }}
       />
     );
@@ -141,7 +68,7 @@ const MiddleSection = (props) => {
                   ...chipTitleColor(pageFormat),
                 }}
                 onPress={() => {
-                  setSelectedFormatId(pageFormat.id);
+                  onFormatChange(pageFormat.id);
                 }}
               />
             ))}
