@@ -119,6 +119,7 @@ export default function App() {
     const paperSize = getSize(selectedSizeId);
     const paperFormat = getFormat(selectedFormatId);
 
+    console.log("**Updating totalWeight**");
     setTotalWeight(
       (
         numberOfSheets *
@@ -127,7 +128,14 @@ export default function App() {
         paperFormat.grammage
       ).toFixed(2)
     );
-  }, [numberOfSheets, selectedSizeId, selectedFormatId]);
+  }, [
+    numberOfSheets,
+    selectedSizeId,
+    selectedFormatId,
+    lengthSliderValue,
+    widthSliderValue,
+    grammageSliderValue,
+  ]);
 
   //event handlers
   const handleNumOfPagesChange = (value) => {
@@ -146,6 +154,7 @@ export default function App() {
   };
 
   const updateCustomSizeTag = (property, value) => {
+    console.log("**Updating Custom tag**", value);
     // update custom tag's length/ width
     let customSize = sizes.find((s) => s.id === "a8");
     if (property === "width") {
@@ -160,6 +169,7 @@ export default function App() {
   };
 
   const updateCustomFormatTag = (value) => {
+    console.log("**Updating Custom tag**", value);
     // update custom tag's grammage
     let customFormat = formats.find((s) => s.id === "07");
     customFormat.grammage = value;

@@ -22,7 +22,7 @@ const SliderRow = ({ sliderTitle, sliderValue, updateSliderValue }) => {
         minimumTrackTintColor={Colors.primaryDark}
         maximumTrackTintColor="#F2F2F2"
         thumbTintColor={Colors.primaryDark}
-        onValueChange={(value) => {
+        onSlidingComplete={(value) => {
           updateSliderValue(sliderTitle, value);
         }}
       />

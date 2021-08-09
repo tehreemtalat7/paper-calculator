@@ -25,6 +25,7 @@ const BottomSection = ({
   ];
 
   const updateSliderValue = (slider, value) => {
+    console.log("Slider update called: ", slider, value);
     if (slider === sliders[0].title || slider === sliders[1].title) {
       updateCustomSizeTag(slider.toLowerCase(), value);
     } else if (slider === sliders[2].title) {
