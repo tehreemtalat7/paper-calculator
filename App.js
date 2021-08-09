@@ -83,7 +83,7 @@ const formats = [
   {
     id: "06",
     title: "JIS B",
-    grammage: 670,
+    grammage: 370,
   },
   {
     id: "07",
@@ -136,10 +136,13 @@ export default function App() {
 
   const updateSize = (sizeId) => {
     setSelectedSizeId(sizeId);
+    setLengthSliderValue(sizes.find((s) => s.id === sizeId).length);
+    setWidthSliderValue(sizes.find((s) => s.id === sizeId).width);
   };
 
   const updateFormat = (formatId) => {
     setSelectedFormatId(formatId);
+    setGrammageSliderValue(formats.find((f) => f.id === formatId).grammage);
   };
 
   const updateCustomSizeTag = (property, value) => {
