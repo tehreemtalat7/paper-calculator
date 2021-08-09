@@ -4,12 +4,11 @@ import ImageButton from "./ImageButton";
 import Images from "../constants/images";
 import Colors from "../constants/colors";
 
-const TopArea = ({ numberOfSheets, updateNumberOfSheets }) => {
+const TopArea = ({ numberOfSheets, weight, updateNumberOfSheets }) => {
   const handleSubtract = () => {
     if (numberOfSheets <= 1) {
       return;
     }
-    // setNumberOfSheets((currentNumber) => currentNumber - 1);
     updateNumberOfSheets(numberOfSheets - 1);
   };
 
@@ -17,7 +16,6 @@ const TopArea = ({ numberOfSheets, updateNumberOfSheets }) => {
     if (numberOfSheets >= 999) {
       return;
     }
-    // setNumberOfSheets((currentNumber) => currentNumber + 1);
     updateNumberOfSheets(numberOfSheets + 1);
   };
 
@@ -66,9 +64,7 @@ const TopArea = ({ numberOfSheets, updateNumberOfSheets }) => {
       </View>
       <View style={styles.footer}>
         <Text style={styles.copy}>Per Copy</Text>
-        <Text style={styles.totalWeight}>
-          {(4.99 * numberOfSheets).toFixed(2)}
-        </Text>
+        <Text style={styles.totalWeight}>{weight}</Text>
       </View>
     </View>
   );
@@ -97,7 +93,7 @@ const styles = StyleSheet.create({
   countBox: {
     height: 74,
     width: 74,
-    backgroundColor: Colors.secondaryDark,
+    backgroundColor: Colors.secondaryDarkOpaque,
     position: "absolute",
     marginTop: 10,
     borderRadius: 15,

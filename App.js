@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import Navbar from "./components/Navbar";
@@ -46,6 +46,12 @@ const sizes = [
     length: 320,
     width: 281,
   },
+  {
+    id: "a8",
+    title: "Custom",
+    length: 320,
+    width: 281,
+  },
 ];
 
 const formats = [
@@ -86,6 +92,14 @@ const formats = [
   },
 ];
 
+const getSize = (sizeId) => {
+  return sizes.find((s) => s.id === sizeId);
+};
+
+const getFormat = (formatId) => {
+  return formats.find((f) => f.id === formatId);
+};
+
 export default function App() {
   let [fontsLoaded] = useFonts({
     Montserrat_400Regular,
@@ -96,6 +110,24 @@ export default function App() {
   const [numberOfSheets, setNumberOfSheets] = useState(1);
   const [selectedSizeId, setSelectedSizeId] = useState("a4");
   const [selectedFormatId, setSelectedFormatId] = useState("01");
+  const [totalWeight, setTotalWeight] = useState(4.99);
+  const [lengthSliderValue, setLengthSliderValue] = useState(297);
+  const [widthSliderValue, setWidthSliderValue] = useState(210);
+  const [grammageSliderValue, setGrammageSliderValue] = useState(10);
+
+  useEffect(() => {
+    const paperSize = getSize(selectedSizeId);
+    const paperFormat = getFormat(selectedFormatId);
+
+    setTotalWeight(
+      (
+        numberOfSheets *
+        (paperSize.length / 1000) *
+        (paperSize.width / 1000) *
+        paperFormat.grammage
+      ).toFixed(2)
+    );
+  }, [numberOfSheets, selectedSizeId, selectedFormatId]);
 
   //event handlers
   const handleNumOfPagesChange = (value) => {
@@ -110,6 +142,29 @@ export default function App() {
     setSelectedFormatId(formatId);
   };
 
+  const updateCustomSizeTag = (property, value) => {
+    // update custom tag's length/ width
+    let customSize = sizes.find((s) => s.id === "a8");
+    if (property === "width") {
+      customSize.width = value;
+      setWidthSliderValue(value);
+    } else if (property === "length") {
+      customSize.length = value;
+      setLengthSliderValue(value);
+    }
+    // custom tag will be selected
+    setSelectedSizeId("a8");
+  };
+
+  const updateCustomFormatTag = (value) => {
+    // update custom tag's grammage
+    let customFormat = formats.find((s) => s.id === "07");
+    customFormat.grammage = value;
+    setGrammageSliderValue(value);
+    // custom tag will be selected
+    setSelectedFormatId("07");
+  };
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
@@ -120,6 +175,7 @@ export default function App() {
         <Navbar headerText="Paper Calculator" />
         <TopArea
           numberOfSheets={numberOfSheets}
+          weight={totalWeight}
           updateNumberOfSheets={handleNumOfPagesChange}
         />
         <MiddleSection
@@ -130,7 +186,13 @@ export default function App() {
           onSizeChange={updateSize}
           onFormatChange={updateFormat}
         />
-        <BottomSection />
+        <BottomSection
+          lengthSliderValue={lengthSliderValue}
+          widthSliderValue={widthSliderValue}
+          grammageSliderValue={grammageSliderValue}
+          updateCustomSizeTag={updateCustomSizeTag}
+          updateCustomFormatTag={updateCustomFormatTag}
+        />
         <StatusBar style="auto" />
       </View>
     </SafeAreaProvider>

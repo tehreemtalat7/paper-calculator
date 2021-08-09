@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { Slider } from "react-native-elements";
+import Colors from "../constants/colors";
 
-const SliderRow = ({ sliderTitle, initialSliderValue }) => {
-  const [sliderValue, setSliderValue] = useState(initialSliderValue);
-
+const SliderRow = ({ sliderTitle, sliderValue, updateSliderValue }) => {
   return (
     <View style={styles.container}>
       <View style={styles.rowHead}>
@@ -19,12 +18,12 @@ const SliderRow = ({ sliderTitle, initialSliderValue }) => {
         step={1}
         maximumValue={500}
         thumbStyle={{ width: 18, height: 18 }}
-        trackStyle={{ color: "#37CEFF", height: 1 }}
-        minimumTrackTintColor="#37CEFF"
+        trackStyle={{ color: Colors.primaryDark, height: 1 }}
+        minimumTrackTintColor={Colors.primaryDark}
         maximumTrackTintColor="#F2F2F2"
-        thumbTintColor="#37CEFF"
+        thumbTintColor={Colors.primaryDark}
         onValueChange={(value) => {
-          setSliderValue(value);
+          updateSliderValue(sliderTitle, value);
         }}
       />
     </View>
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   value: {
-    backgroundColor: "#4A5171",
+    backgroundColor: Colors.secondaryDark,
     borderRadius: 10,
     height: 30,
     justifyContent: "center",

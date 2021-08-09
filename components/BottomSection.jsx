@@ -2,12 +2,46 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import SliderRow from "../components/SliderRow";
 
-const BottomSection = (props) => {
+const BottomSection = ({
+  lengthSliderValue,
+  widthSliderValue,
+  grammageSliderValue,
+  updateCustomSizeTag,
+  updateCustomFormatTag,
+}) => {
+  const sliders = [
+    {
+      title: "Length",
+      initialValue: lengthSliderValue,
+    },
+    {
+      title: "Width",
+      initialValue: widthSliderValue,
+    },
+    {
+      title: "Grammage",
+      initialValue: grammageSliderValue,
+    },
+  ];
+
+  const updateSliderValue = (slider, value) => {
+    if (slider === sliders[0].title || slider === sliders[1].title) {
+      updateCustomSizeTag(slider.toLowerCase(), value);
+    } else if (slider === sliders[2].title) {
+      updateCustomFormatTag(value);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <SliderRow sliderTitle="Length" initialSliderValue={297} />
-      <SliderRow sliderTitle="Width" initialSliderValue={210} />
-      <SliderRow sliderTitle="Grammage" initialSliderValue={10} />
+      {sliders.map((slider) => (
+        <SliderRow
+          key={slider.initialValue}
+          sliderTitle={slider.title}
+          sliderValue={slider.initialValue}
+          updateSliderValue={updateSliderValue}
+        />
+      ))}
     </View>
   );
 };
