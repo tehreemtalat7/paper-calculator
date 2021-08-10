@@ -116,22 +116,16 @@ export default function App() {
   const [grammageSliderValue, setGrammageSliderValue] = useState(10);
 
   useEffect(() => {
-    const paperSize = getSize(selectedSizeId);
-    const paperFormat = getFormat(selectedFormatId);
-
-    // console.log("**Updating totalWeight**");
     setTotalWeight(
       (
         numberOfSheets *
-        (paperSize.length / 1000) *
-        (paperSize.width / 1000) *
-        paperFormat.grammage
+        (lengthSliderValue / 1000) *
+        (widthSliderValue / 1000) *
+        grammageSliderValue
       ).toFixed(2)
     );
   }, [
     numberOfSheets,
-    selectedSizeId,
-    selectedFormatId,
     lengthSliderValue,
     widthSliderValue,
     grammageSliderValue,
@@ -154,14 +148,9 @@ export default function App() {
   };
 
   const updateCustomSizeTag = (property, value) => {
-    // console.log("**Updating Custom tag**", value);
-    // update custom tag's length/ width
-    let customSize = sizes.find((s) => s.id === "a8");
     if (property === "width") {
-      customSize.width = value;
       setWidthSliderValue(value);
     } else if (property === "length") {
-      customSize.length = value;
       setLengthSliderValue(value);
     }
     // custom tag will be selected
@@ -169,10 +158,6 @@ export default function App() {
   };
 
   const updateCustomFormatTag = (value) => {
-    // console.log("**Updating Custom tag**", value);
-    // update custom tag's grammage
-    let customFormat = formats.find((s) => s.id === "07");
-    customFormat.grammage = value;
     setGrammageSliderValue(value);
     // custom tag will be selected
     setSelectedFormatId("07");
