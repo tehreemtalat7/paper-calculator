@@ -171,11 +171,11 @@ export default function App() {
   const updateCustomFormatTag = (value) => {
     // console.log("**Updating Custom tag**", value);
     // update custom tag's grammage
-    //  let customFormat = formats.find((s) => s.id === "07");
-    //  customFormat.grammage = value;
+    let customFormat = formats.find((s) => s.id === "07");
+    customFormat.grammage = value;
     setGrammageSliderValue(value);
     // custom tag will be selected
-    // setSelectedFormatId("07");
+    setSelectedFormatId("07");
   };
 
   if (!fontsLoaded) {
