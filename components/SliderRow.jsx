@@ -4,12 +4,14 @@ import { Slider } from "react-native-elements";
 import Colors from "../constants/colors";
 
 const SliderRow = ({ sliderTitle, sliderValue, updateSliderValue }) => {
+  const [sliderLength, setSliderLength] = useState(sliderValue);
+
   return (
     <View style={styles.container}>
       <View style={styles.rowHead}>
         <Text style={styles.title}>{sliderTitle}</Text>
         <View style={styles.value}>
-          <Text style={styles.badge}>{Math.round(sliderValue)}mm</Text>
+          <Text style={styles.badge}>{Math.round(sliderLength)}mm</Text>
         </View>
       </View>
       <Slider
@@ -22,6 +24,7 @@ const SliderRow = ({ sliderTitle, sliderValue, updateSliderValue }) => {
         minimumTrackTintColor={Colors.primaryDark}
         maximumTrackTintColor="#F2F2F2"
         thumbTintColor={Colors.primaryDark}
+        onValueChange={(length) => setSliderLength(length)}
         onSlidingComplete={(value) => {
           updateSliderValue(sliderTitle, value);
         }}
