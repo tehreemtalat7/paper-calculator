@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Chip } from "react-native-elements";
 import Colors from "../constants/colors";
+import Dimens from "../constants/dimens";
 
 const Item = ({ item, onPress, textColor }) => (
   <TouchableOpacity onPress={onPress} style={styles.item}>
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
   },
   formatSection: {
     height: 110,
-    padding: 20,
+    padding: Dimens.normalPadding,
     borderTopEndRadius: 15,
     borderTopLeftRadius: 15,
     backgroundColor: Colors.tertiaryLight,
@@ -110,10 +111,10 @@ const styles = StyleSheet.create({
     height: 30,
     marginRight: 10,
     marginBottom: 10,
-    borderRadius: 10,
+    borderRadius: Dimens.borderRadius,
   },
   chipTitle: {
-    fontSize: 12,
+    fontSize: Dimens.fonts.semiNormal,
     fontFamily: "Montserrat_400Regular",
   },
   sizesContainer: {
@@ -122,14 +123,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.tertiary,
     borderBottomEndRadius: 15,
     borderBottomLeftRadius: 15,
-    paddingHorizontal: 20,
+    paddingHorizontal: Dimens.normalPadding,
     alignItems: "center",
   },
   item: {
     marginRight: 15,
   },
   title: {
-    fontSize: 12,
+    fontSize: Dimens.fonts.semiNormal,
     color: Colors.tertiaryDark,
     fontFamily: "Montserrat_400Regular",
   },

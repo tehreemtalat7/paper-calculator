@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import SliderRow from "../components/SliderRow";
+import Dimens from "../constants/dimens";
 
 const BottomSection = ({
   lengthSliderValue,
@@ -13,23 +14,26 @@ const BottomSection = ({
     {
       title: "Grammage",
       initialValue: grammageSliderValue,
+      unit: "g",
     },
     {
       title: "Length",
       initialValue: lengthSliderValue,
+      unit: "mm",
     },
     {
       title: "Width",
       initialValue: widthSliderValue,
+      unit: "mm",
     },
   ];
 
   const updateSliderValue = (slider, value) => {
     // console.log("Slider update called: ", slider, value);
-    if (slider === sliders[1].title || slider === sliders[2].title) {
-      updateCustomSizeTag(slider.toLowerCase(), value);
-    } else if (slider === sliders[0].title) {
+    if (slider === sliders[0].title) {
       updateCustomFormatTag(value);
+    } else {
+      updateCustomSizeTag(slider.toLowerCase(), value);
     }
   };
 
@@ -38,6 +42,7 @@ const BottomSection = ({
       {sliders.map((slider, index) => (
         <SliderRow
           key={index}
+          unit={slider.unit}
           sliderTitle={slider.title}
           sliderValue={slider.initialValue}
           updateSliderValue={updateSliderValue}
@@ -52,8 +57,8 @@ const styles = StyleSheet.create({
     height: 276,
     marginHorizontal: 25,
     marginTop: 15,
-    padding: 20,
-    borderRadius: 10,
+    padding: Dimens.normalPadding,
+    borderRadius: Dimens.borderRadius,
     backgroundColor: "#3A4163",
   },
 });

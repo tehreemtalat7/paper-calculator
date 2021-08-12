@@ -92,14 +92,6 @@ const formats = [
   },
 ];
 
-const getSize = (sizeId) => {
-  return sizes.find((s) => s.id === sizeId);
-};
-
-const getFormat = (formatId) => {
-  return formats.find((f) => f.id === formatId);
-};
-
 export default function App() {
   let [fontsLoaded] = useFonts({
     Montserrat_400Regular,
@@ -174,7 +166,7 @@ export default function App() {
         <TopArea
           numberOfSheets={numberOfSheets}
           weight={totalWeight}
-          updateNumberOfSheets={handleNumOfPagesChange}
+          onNumberOfSheetsChanged={handleNumOfPagesChange}
         />
         <MiddleSection
           pageSizes={sizes}

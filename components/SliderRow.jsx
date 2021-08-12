@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, TextInput } from "react-native";
 import { Slider } from "react-native-elements";
 import Colors from "../constants/colors";
+import Dimens from "../constants/dimens";
 
-const SliderRow = ({ sliderTitle, sliderValue, updateSliderValue }) => {
+const SliderRow = ({ sliderTitle, sliderValue, unit, updateSliderValue }) => {
   const [lengthDisplay, setLengthDisplay] = useState(sliderValue);
 
   useEffect(() => {
@@ -31,11 +32,11 @@ const SliderRow = ({ sliderTitle, sliderValue, updateSliderValue }) => {
             style={{
               alignSelf: "center",
               color: "white",
-              fontSize: 10,
+              fontSize: Dimens.fonts.small,
               fontFamily: "Montserrat_400Regular",
             }}
           >
-            mm
+            {unit}
           </Text>
         </View>
       </View>
@@ -47,7 +48,7 @@ const SliderRow = ({ sliderTitle, sliderValue, updateSliderValue }) => {
         thumbStyle={{ width: 18, height: 18 }}
         trackStyle={{ color: Colors.primaryDark, height: 1 }}
         minimumTrackTintColor={Colors.primaryDark}
-        maximumTrackTintColor="#F2F2F2"
+        maximumTrackTintColor={Colors.secondaryLight}
         thumbTintColor={Colors.primaryDark}
         onValueChange={(length) => setLengthDisplay(length)}
         onSlidingComplete={(value) => {
@@ -62,11 +63,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    padding: 10,
+    padding: Dimens.lessPadding,
   },
   title: {
     color: "white",
-    fontSize: 14,
+    fontSize: Dimens.fonts.normal,
     fontFamily: "montserrat_bold",
   },
   rowHead: {
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
   value: {
     height: 30,
     padding: 3,
-    borderRadius: 10,
+    borderRadius: Dimens.borderRadius,
     justifyContent: "center",
     backgroundColor: Colors.secondaryDark,
     flexDirection: "row",
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
   },
   badge: {
     color: "white",
-    fontSize: 12,
+    fontSize: Dimens.fonts.semiNormal,
     fontFamily: "Montserrat_400Regular",
     alignSelf: "flex-end",
   },

@@ -3,8 +3,13 @@ import { View, Text, TextInput, StyleSheet, Image } from "react-native";
 import ImageButton from "./ImageButton";
 import Images from "../constants/images";
 import Colors from "../constants/colors";
+import Dimens from "../constants/dimens";
 
-const TopArea = ({ numberOfSheets, weight, updateNumberOfSheets }) => {
+const TopArea = ({
+  numberOfSheets,
+  weight,
+  onNumberOfSheetsChanged: updateNumberOfSheets,
+}) => {
   const handleSubtract = () => {
     if (numberOfSheets <= 1) {
       return;
@@ -79,7 +84,7 @@ const styles = StyleSheet.create({
     height: 169,
     width: 355,
     backgroundColor: Colors.primaryDark,
-    padding: 20,
+    padding: Dimens.normalPadding,
     borderTopEndRadius: 15,
     borderTopLeftRadius: 15,
     flexDirection: "row",
@@ -96,17 +101,17 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.secondaryDarkOpaque,
     position: "absolute",
     marginTop: 10,
-    borderRadius: 15,
+    borderRadius: Dimens.borderRadiusLarge,
   },
   sheets: {
-    fontSize: 24,
+    fontSize: Dimens.fonts.heading,
     paddingTop: 12,
     color: "white",
     textAlign: "center",
     fontFamily: "montserrat_bold",
   },
   sheetsLabel: {
-    fontSize: 10,
+    fontSize: Dimens.fonts.small,
     color: "white",
     textAlign: "center",
     fontFamily: "Montserrat_400Regular",
@@ -136,7 +141,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryLight,
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 20,
+    paddingVertical: Dimens.normalPadding,
     paddingHorizontal: 30,
     borderBottomEndRadius: 15,
     borderBottomLeftRadius: 15,
@@ -146,7 +151,7 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat_400Regular",
   },
   totalWeight: {
-    fontSize: 18,
+    fontSize: Dimens.fonts.large,
     color: "white",
     fontFamily: "montserrat_bold",
   },

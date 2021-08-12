@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ImageButton from "./ImageButton";
 import Images from "../constants/images";
+import Dimens from "../constants/dimens";
 
 const Navbar = (props) => {
   return (
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   },
   heading: {
     height: 20,
-    fontSize: 16,
+    fontSize: Dimens.fonts.semiLarge,
     fontFamily: "montserrat_bold",
   },
   menuIcon: {

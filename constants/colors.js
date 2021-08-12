@@ -2,6 +2,7 @@ export default {
   primaryDark: "#37CEFF",
   secondaryDarkOpaque: "#4A517120",
   secondaryDark: "#4A517120",
+  secondaryLight: "#F2F2F2",
   primaryLight: "#6FDBFF",
   tertiaryDark: "#B0B5CB",
   tertiary: "#EFF0F5",
